@@ -8,6 +8,14 @@ var markers = []
  * Fetch neighborhoods and cuisines as soon as the page is loaded.
  */
 document.addEventListener('DOMContentLoaded', (event) => {
+  // Set up service worker
+  if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/serviceWorker.js').then(reg => {
+      console.log('Service Worker Registration Successful: ' + reg.scope);
+    }).catch(error => {
+      console.log('Service Worker Registration Failed: ' + error);
+    });
+  }
   initMap(); // added 
   fetchNeighborhoods();
   fetchCuisines();
